@@ -41,7 +41,17 @@ struct ContentView: View {
             Text("Select an item")
         }
         .onAppear {
-            myPrint("ContentView")
+            // demo: calling workouts API
+            let diHandler = DependencyInjectionHandler()
+            let workoutUsecase = diHandler.makeWorkoutsUsecase()
+            Task {
+                do {
+                    let workoutsResponse = try await workoutUsecase.fetchWorkouts()
+                    myPrint(workoutsResponse)
+                } catch {
+                    myPrint(error.localizedDescription)
+                }
+            }
         }
     }
 
