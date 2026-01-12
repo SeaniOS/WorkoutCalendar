@@ -40,6 +40,9 @@ struct ContentView: View {
             }
             Text("Select an item")
         }
+        .onAppear {
+            myPrint("ContentView")
+        }
     }
 
     private func addItem() {
