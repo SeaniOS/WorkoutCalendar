@@ -8,14 +8,14 @@
 import Foundation
 
 struct WorkoutsResponse: Codable {
-    let dayData: [DayData]
+    let trainingDays: [DayData]
     
     private enum CodingKeys: String, CodingKey {
-        case dayData = "day_data"
+        case trainingDays = "day_data"
     }
 }
 
-struct DayData: Codable {
+struct DayData: Codable, Identifiable {
     let id: String
     let assignments: [Assignment]
     let trainer: String

@@ -14,9 +14,16 @@ protocol DependencyInjection {
 class DependencyInjectionHandler: DependencyInjection {
 }
 
+extension DependencyInjectionHandler {
+    func makeTrainingCalendarViewModel() -> DefaultTrainingCalendarViewModel {
+        let workoutsUseCase = makeWorkoutsUseCase()
+        return DefaultTrainingCalendarViewModel(workoutsUseCase: workoutsUseCase)
+    }
+}
+
 // MARK: - Workouts
 extension DependencyInjectionHandler {
-    func makeWorkoutsUsecase() -> WorkoutsUseCase {
+    private func makeWorkoutsUseCase() -> WorkoutsUseCase {
         let workoutsRepository = makeWorkoutsRepository()
         return DefaultWorkoutsUseCase(workoutsRepository: workoutsRepository)
     }
